@@ -5,8 +5,7 @@ const navigation = [
   { label: "Home", to: "/" },
   { label: "About", to: "/#about" },
   { label: "Menu", to: "/#specials" },
-  { label: "Reservations", to: "/booking" },
-  { label: "Order online", to: "/booking" },
+  { label: "Book a table", to: "/booking", cta: true },
 ];
 
 function Header() {
@@ -34,12 +33,15 @@ function Header() {
           aria-label="Main navigation">
           <ul>
             {navigation.map((item) => (
-              <li key={item.label}>
+              <li className={item.cta ? "nav-cta-item" : undefined} key={item.label}>
                 {item.to.startsWith("/#")
                   ? <a href={item.to} onClick={closeMenu}>{item.label}</a>
                   : <NavLink to={item.to} onClick={closeMenu}
-                      className={({ isActive }) => isActive && item.to !== "/" ? "active" : ""}>
-                      {item.label}
+                      className={({ isActive }) => [
+                        item.cta ? "nav-cta" : "",
+                        isActive && item.to !== "/" ? "active" : "",
+                      ].filter(Boolean).join(" ")}>
+                      {item.label}{item.cta && <span aria-hidden="true">→</span>}
                     </NavLink>}
               </li>
             ))}
