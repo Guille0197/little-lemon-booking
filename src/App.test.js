@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 
 describe("Little Lemon application", () => {
@@ -11,7 +11,7 @@ describe("Little Lemon application", () => {
 
   test("opens the booking page from the primary navigation", () => {
     render(<App />);
-    fireEvent.click(screen.getByRole("link", { name: "Reservations" }));
+    fireEvent.click(within(screen.getByRole("navigation", { name: "Main navigation" })).getByRole("link", { name: "Reservations" }));
     expect(screen.getByRole("heading", { name: /let’s save you a seat/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /make a reservation/i })).toBeInTheDocument();
   });
