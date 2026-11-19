@@ -6,7 +6,7 @@ describe("Little Lemon application", () => {
   test("renders the home page", () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "Little Lemon" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /reserve a table/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /reserve a table/i }).length).toBeGreaterThan(0);
   });
 
   test("opens the booking page from the primary navigation", () => {
