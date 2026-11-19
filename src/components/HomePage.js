@@ -13,6 +13,12 @@ const testimonials = [
   { name: "Amira K.", quote: "Warm service, beautiful flavors and an atmosphere that makes you want to stay." },
 ];
 
+const experiences = [
+  { number: "01", title: "Fresh & seasonal", description: "Bright ingredients, thoughtfully prepared." },
+  { number: "02", title: "Made to be shared", description: "Family recipes and Mediterranean warmth." },
+  { number: "03", title: "Your seat, sorted", description: "Choose a date and time in just a few steps." },
+];
+
 function HomePage() {
   return (
     <main>
@@ -23,22 +29,53 @@ function HomePage() {
             <h1>Little Lemon</h1>
             <p className="hero-location">Chicago</p>
             <p className="hero-description">Family recipes, fresh ingredients and a table waiting just for you. Come hungry, leave happy.</p>
-            <Link className="button button-primary" to="/booking">Reserve a table <span aria-hidden="true">→</span></Link>
+
+            <div className="hero-actions">
+              <Link className="button button-primary hero-cta" to="/booking">
+                <span className="hero-cta-icon" aria-hidden="true">↗</span>
+                <span className="hero-cta-label">
+                  <strong>Reserve your table</strong>
+                  <small>Choose your date &amp; time</small>
+                </span>
+                <span className="hero-cta-arrow" aria-hidden="true">→</span>
+              </Link>
+              <a className="hero-secondary-link" href="#specials">Explore this week’s menu <span aria-hidden="true">↓</span></a>
+            </div>
+
+            <ul className="hero-trust-row" aria-label="Little Lemon highlights">
+              <li><span aria-hidden="true">✦</span> Family-owned</li>
+              <li><span aria-hidden="true">✦</span> Mediterranean flavors</li>
+            </ul>
           </div>
           <div className="hero-image-wrap">
             <img className="hero-image"
               src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=90"
               alt="A colorful Mediterranean spread made with fresh ingredients" />
             <span className="hero-image-note">Fresh, seasonal, made with love</span>
+            <span className="hero-image-stamp" aria-hidden="true">A LITTLE<br />LEMON<br /><span>✦</span></span>
           </div>
         </div>
         <div className="hero-decoration" aria-hidden="true" />
       </section>
 
+      <section className="experience-strip" aria-label="The Little Lemon experience">
+        <div className="experience-inner">
+          {experiences.map((item) => (
+            <article className="experience-item" key={item.number}>
+              <span className="experience-number">{item.number}</span>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="specials-section content-section" id="specials">
         <div className="section-heading">
           <div><p className="eyebrow">Made fresh for you</p><h2>This week’s specials</h2></div>
-          <Link className="button button-dark" to="/booking">Book your table</Link>
+          <Link className="button button-dark" to="/booking">Book your table <span aria-hidden="true">→</span></Link>
         </div>
         <div className="specials-grid">
           {specials.map((item) => (
@@ -82,6 +119,24 @@ function HomePage() {
           <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=85" alt="A chef preparing a fresh dish in the kitchen" loading="lazy" />
         </div>
       </section>
+
+      <section className="final-cta-section">
+        <div className="final-cta-inner">
+          <div className="final-cta-copy">
+            <p className="eyebrow eyebrow-light">Something delicious is waiting</p>
+            <h2>Good evenings start with a seat at our table.</h2>
+            <p>Bring your favorite people. We’ll take care of the rest.</p>
+          </div>
+          <Link className="button button-primary final-cta-button" to="/booking">
+            Reserve your table <span aria-hidden="true">→</span>
+          </Link>
+          <span className="final-cta-lemon" aria-hidden="true">🍋</span>
+        </div>
+      </section>
+
+      <Link className="mobile-booking-cta" to="/booking">
+        <span>Reserve your table</span><span aria-hidden="true">→</span>
+      </Link>
     </main>
   );
 }
